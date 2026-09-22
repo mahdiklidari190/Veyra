@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Veyra — Download</title>
+    <title>Veyra — Protect Your Media</title>
 
-    <meta name="description" content="Download Veyra for Android.">
-    <meta name="theme-color" content="#08080b">
+    <meta
+        name="description"
+        content="Veyra protects your photos and videos with secure file encryption."
+    >
+
+    <meta name="theme-color" content="#07090d">
 
     <style>
         * {
@@ -17,12 +21,14 @@
         }
 
         :root {
-            --bg: #08080b;
-            --card: rgba(255, 255, 255, 0.055);
-            --border: rgba(255, 255, 255, 0.11);
-            --text: #ffffff;
-            --muted: #a1a1aa;
-            --accent: #ffffff;
+            --bg: #07090d;
+            --bg2: #0b0f16;
+            --text: #f5f7fa;
+            --muted: #8c96a5;
+            --line: rgba(255,255,255,.09);
+            --card: rgba(255,255,255,.035);
+            --accent: #7c8cff;
+            --accent2: #a855f7;
         }
 
         html {
@@ -31,242 +37,304 @@
 
         body {
             min-height: 100vh;
+            overflow-x: hidden;
+
             font-family:
                 Inter,
-                ui-sans-serif,
-                system-ui,
                 -apple-system,
                 BlinkMacSystemFont,
                 "Segoe UI",
+                Roboto,
+                Arial,
                 sans-serif;
 
             color: var(--text);
+
             background:
                 radial-gradient(
                     circle at 50% -10%,
-                    rgba(255, 255, 255, 0.12),
-                    transparent 38%
+                    rgba(124,140,255,.18),
+                    transparent 35%
                 ),
                 radial-gradient(
-                    circle at 10% 80%,
-                    rgba(120, 80, 255, 0.08),
-                    transparent 30%
+                    circle at 90% 35%,
+                    rgba(168,85,247,.08),
+                    transparent 28%
                 ),
                 var(--bg);
-
-            overflow-x: hidden;
         }
+
+        /* GRID BACKGROUND */
 
         body::before {
             content: "";
             position: fixed;
             inset: 0;
+
             pointer-events: none;
 
             background-image:
                 linear-gradient(
-                    rgba(255,255,255,0.018) 1px,
+                    rgba(255,255,255,.018) 1px,
                     transparent 1px
                 ),
                 linear-gradient(
                     90deg,
-                    rgba(255,255,255,0.018) 1px,
+                    rgba(255,255,255,.018) 1px,
                     transparent 1px
                 );
 
-            background-size: 42px 42px;
-            mask-image: linear-gradient(
-                to bottom,
-                black,
-                transparent 80%
-            );
+            background-size: 45px 45px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black 0%,
+                    transparent 80%
+                );
         }
 
         .container {
-            width: min(1100px, calc(100% - 40px));
+            width: min(1120px, calc(100% - 40px));
             margin: auto;
         }
 
-        /* NAVBAR */
+        /* NAV */
 
         nav {
-            height: 80px;
+            height: 82px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             position: relative;
             z-index: 10;
         }
 
-        .logo {
+        .brand {
             display: flex;
             align-items: center;
             gap: 11px;
 
+            color: white;
+            text-decoration: none;
+
             font-size: 20px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            font-weight: 750;
+            letter-spacing: -.5px;
         }
 
-        .logo-mark {
-            width: 36px;
-            height: 36px;
-            border-radius: 11px;
+        .logo {
+            width: 38px;
+            height: 38px;
 
             display: grid;
             place-items: center;
 
-            background: #fff;
-            color: #000;
+            border-radius: 12px;
 
-            font-size: 17px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #d9ddff
+                );
+
+            color: #111827;
+
             font-weight: 900;
 
             box-shadow:
-                0 0 35px rgba(255,255,255,.12);
+                0 0 35px rgba(124,140,255,.25);
         }
 
         .github {
+            color: #aeb6c4;
             text-decoration: none;
-            color: #d4d4d8;
 
             font-size: 14px;
             font-weight: 500;
 
-            padding: 10px 15px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
             border-radius: 10px;
+
+            padding: 10px 15px;
 
             transition: .25s ease;
         }
 
         .github:hover {
-            color: #fff;
-            border-color: rgba(255,255,255,.3);
+            color: white;
+
             background: rgba(255,255,255,.05);
+
+            border-color:
+                rgba(255,255,255,.2);
         }
 
         /* HERO */
 
         .hero {
-            min-height: calc(100vh - 80px);
+            min-height: calc(100vh - 82px);
 
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
 
             text-align: center;
-            position: relative;
+
             padding: 70px 0 100px;
+
+            position: relative;
         }
 
-        .hero::before {
-            content: "";
+        .hero-content {
+            width: 100%;
+            max-width: 850px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        /* GLOW */
+
+        .glow {
             position: absolute;
 
-            width: 500px;
-            height: 500px;
+            width: 420px;
+            height: 420px;
 
             left: 50%;
             top: 40%;
 
-            transform: translate(-50%, -50%);
-
-            background: rgba(255,255,255,.045);
-            filter: blur(100px);
+            transform:
+                translate(-50%, -50%);
 
             border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(124,140,255,.16),
+                    transparent 68%
+                );
+
+            filter: blur(20px);
+
             pointer-events: none;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 780px;
-        }
+        /* BADGE */
 
         .badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 9px;
 
-            padding: 8px 13px;
+            padding: 8px 14px;
 
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
             border-radius: 999px;
 
-            background: rgba(255,255,255,.035);
+            background:
+                rgba(255,255,255,.035);
 
-            color: #d4d4d8;
+            color: #b9c1ce;
 
             font-size: 13px;
+
             margin-bottom: 28px;
 
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px);
         }
 
-        .dot {
+        .status {
             width: 7px;
             height: 7px;
 
             border-radius: 50%;
-            background: #fff;
 
-            box-shadow: 0 0 12px #fff;
+            background: #7c8cff;
+
+            box-shadow:
+                0 0 12px #7c8cff;
         }
+
+        /* TITLE */
 
         h1 {
-            font-size: clamp(52px, 9vw, 104px);
-            line-height: .95;
+            font-size:
+                clamp(50px, 8vw, 92px);
 
-            letter-spacing: -0.075em;
+            line-height: .96;
+
+            letter-spacing:
+                -.075em;
+
             font-weight: 800;
 
-            margin-bottom: 28px;
+            margin-bottom: 30px;
         }
 
-        h1 span {
-            color: #71717a;
+        h1 .gradient {
+            background:
+                linear-gradient(
+                    100deg,
+                    #ffffff 20%,
+                    #9ca8ff 55%,
+                    #c084fc 90%
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
         }
+
+        /* DESCRIPTION */
 
         .description {
-            max-width: 600px;
-            margin: auto;
+            max-width: 650px;
+
+            margin: 0 auto 38px;
 
             color: var(--muted);
 
-            font-size: clamp(16px, 2vw, 19px);
-            line-height: 1.7;
+            font-size:
+                clamp(16px, 2vw, 19px);
 
-            margin-bottom: 38px;
+            line-height: 1.7;
         }
 
-        /* DOWNLOAD BUTTON */
+        /* DOWNLOAD */
 
         .download {
             display: inline-flex;
+
             align-items: center;
             justify-content: center;
+
             gap: 11px;
 
-            min-width: 190px;
+            min-width: 215px;
             height: 58px;
 
             padding: 0 25px;
 
-            background: #fff;
-            color: #08080b;
-
             border-radius: 15px;
+
+            color: #08090d;
+            background: white;
 
             text-decoration: none;
 
             font-size: 15px;
-            font-weight: 700;
+            font-weight: 750;
 
             box-shadow:
-                0 15px 45px rgba(0,0,0,.35),
-                0 0 0 1px rgba(255,255,255,.1);
+                0 15px 50px rgba(0,0,0,.35),
+                0 0 45px rgba(124,140,255,.08);
 
             transition:
                 transform .25s ease,
@@ -280,152 +348,235 @@
         }
 
         .download:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
 
-            background: #f4f4f5;
+            background: #f1f3ff;
 
             box-shadow:
-                0 20px 55px rgba(0,0,0,.5),
-                0 0 35px rgba(255,255,255,.1);
+                0 20px 60px rgba(0,0,0,.5),
+                0 0 55px rgba(124,140,255,.18);
         }
 
         .download:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
 
-        .hint {
-            margin-top: 18px;
+        .download-info {
+            margin-top: 15px;
 
-            color: #52525b;
+            color: #5f6876;
+
             font-size: 12px;
         }
 
-        /* FEATURES */
+        /* SECURITY CARDS */
 
         .features {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 15px;
 
             margin-top: 75px;
         }
 
         .feature {
-            padding: 24px;
+            position: relative;
 
             text-align: left;
 
-            border: 1px solid var(--border);
-            border-radius: 18px;
+            padding: 26px;
 
-            background: var(--card);
+            border:
+                1px solid var(--line);
 
-            backdrop-filter: blur(14px);
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.055),
+                    rgba(255,255,255,.018)
+                );
+
+            backdrop-filter: blur(18px);
+
+            overflow: hidden;
 
             transition:
-                transform .25s ease,
-                border-color .25s ease;
+                transform .3s ease,
+                border-color .3s ease;
+        }
+
+        .feature::after {
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+            height: 120px;
+
+            right: -60px;
+            top: -60px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(124,140,255,.08);
+
+            filter: blur(30px);
         }
 
         .feature:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255,255,255,.22);
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(255,255,255,.18);
         }
 
-        .feature-icon {
-            width: 38px;
-            height: 38px;
+        .icon {
+            width: 42px;
+            height: 42px;
 
             display: grid;
             place-items: center;
 
-            border-radius: 11px;
+            border-radius: 12px;
 
-            background: rgba(255,255,255,.08);
+            background:
+                rgba(124,140,255,.09);
 
-            margin-bottom: 17px;
+            border:
+                1px solid rgba(124,140,255,.12);
+
+            margin-bottom: 18px;
+        }
+
+        .icon svg {
+            width: 20px;
+            height: 20px;
         }
 
         .feature h3 {
             font-size: 15px;
+
             margin-bottom: 8px;
         }
 
         .feature p {
-            color: #71717a;
+            color: #707a89;
+
             font-size: 13px;
-            line-height: 1.6;
+
+            line-height: 1.65;
         }
 
         /* FOOTER */
 
         footer {
-            padding: 40px 0 30px;
+            padding: 35px 0 30px;
 
             text-align: center;
 
-            color: #52525b;
+            color: #4f5865;
+
             font-size: 12px;
         }
 
-        /* RESPONSIVE */
+        /* MOBILE */
 
-        @media (max-width: 700px) {
+        @media (max-width: 720px) {
 
             .container {
-                width: min(100% - 28px, 1100px);
+                width:
+                    calc(100% - 28px);
             }
 
             nav {
                 height: 70px;
             }
 
-            .github {
-                font-size: 12px;
-                padding: 9px 12px;
-            }
-
-            .logo {
+            .brand {
                 font-size: 18px;
             }
 
-            .logo-mark {
-                width: 33px;
-                height: 33px;
+            .logo {
+                width: 34px;
+                height: 34px;
+
+                border-radius: 10px;
+            }
+
+            .github {
+                font-size: 12px;
+
+                padding:
+                    9px 12px;
             }
 
             .hero {
-                min-height: calc(100vh - 70px);
-                padding: 55px 0 70px;
+                min-height:
+                    calc(100vh - 70px);
+
+                padding:
+                    55px 0 70px;
             }
 
             h1 {
-                font-size: clamp(52px, 18vw, 78px);
+                font-size:
+                    clamp(48px, 16vw, 74px);
             }
 
             .description {
                 font-size: 15px;
+
                 line-height: 1.65;
             }
 
             .download {
                 width: 100%;
-                max-width: 300px;
+                max-width: 310px;
             }
 
             .features {
                 grid-template-columns: 1fr;
+
                 margin-top: 55px;
             }
 
             .feature {
-                padding: 20px;
+                padding: 22px;
             }
         }
 
+        /* SMALL PHONES */
+
+        @media (max-width: 380px) {
+
+            h1 {
+                font-size: 46px;
+            }
+
+            .badge {
+                font-size: 11px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+        }
+
+        /* REDUCED MOTION */
+
         @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
             * {
-                scroll-behavior: auto !important;
                 transition: none !important;
             }
         }
@@ -436,11 +587,20 @@
 
     <div class="container">
 
+        <!-- NAVIGATION -->
+
         <nav>
-            <div class="logo">
-                <div class="logo-mark">V</div>
+
+            <a
+                href="#"
+                class="brand"
+            >
+                <div class="logo">
+                    V
+                </div>
+
                 Veyra
-            </div>
+            </a>
 
             <a
                 class="github"
@@ -450,31 +610,54 @@
             >
                 GitHub
             </a>
+
         </nav>
 
+
+        <!-- HERO -->
+
         <main class="hero">
+
+            <div class="glow"></div>
 
             <div class="hero-content">
 
                 <div class="badge">
-                    <span class="dot"></span>
-                    Veyra for Android
+
+                    <span class="status"></span>
+
+                    Secure media encryption
+
                 </div>
 
+
                 <h1>
-                    Meet <span>Veyra.</span>
+
+                    Protect your
+                    <span class="gradient">
+                        media.
+                    </span>
+
                 </h1>
 
+
                 <p class="description">
-                    A modern Android experience designed to be simple,
-                    fast and beautiful. Download Veyra and get started.
+
+                    Veyra is a modern Android application
+                    designed to protect your private photos
+                    and videos through file encryption.
+
                 </p>
+
+
+                <!-- DOWNLOAD BUTTON -->
 
                 <a
                     class="download"
                     href="https://github.com/mahdiklidari190/Veyra/raw/refs/heads/main/Veyra.apk"
                     download="Veyra.apk"
                 >
+
                     <svg
                         viewBox="0 0 24 24"
                         fill="none"
@@ -488,62 +671,170 @@
                         <path d="M5 21h14"></path>
                     </svg>
 
-                    Download
+                    Download for Android
+
                 </a>
 
-                <div class="hint">
+
+                <div class="download-info">
+
                     Android APK • Free Download
-                </div>
-
-                <div class="features">
-
-                    <div class="feature">
-                        <div class="feature-icon">
-                            ⚡
-                        </div>
-
-                        <h3>Fast & Lightweight</h3>
-
-                        <p>
-                            Built with a focus on performance,
-                            responsiveness and a smooth experience.
-                        </p>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">
-                            ◈
-                        </div>
-
-                        <h3>Modern Design</h3>
-
-                        <p>
-                            A clean interface designed to look
-                            beautiful across different screen sizes.
-                        </p>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">
-                            ↗
-                        </div>
-
-                        <h3>Easy to Install</h3>
-
-                        <p>
-                            Download the APK and install Veyra
-                            directly on your Android device.
-                        </p>
-                    </div>
 
                 </div>
+
+
+                <!-- FEATURES -->
+
+                <section class="features">
+
+
+                    <!-- ENCRYPTION -->
+
+                    <div class="feature">
+
+                        <div class="icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <rect
+                                    x="3"
+                                    y="11"
+                                    width="18"
+                                    height="10"
+                                    rx="2"
+                                ></rect>
+
+                                <path
+                                    d="M7 11V7a5 5 0 0 1 10 0v4"
+                                ></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+                            File Encryption
+                        </h3>
+
+                        <p>
+                            Protect your personal files
+                            with encryption before storing
+                            or sharing them.
+                        </p>
+
+                    </div>
+
+
+                    <!-- VIDEO -->
+
+                    <div class="feature">
+
+                        <div class="icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <rect
+                                    x="3"
+                                    y="5"
+                                    width="18"
+                                    height="14"
+                                    rx="2"
+                                ></rect>
+
+                                <path
+                                    d="m10 9 5 3-5 3V9z"
+                                ></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+                            Video Protection
+                        </h3>
+
+                        <p>
+                            Encrypt private videos and keep
+                            sensitive media protected on
+                            your device.
+                        </p>
+
+                    </div>
+
+
+                    <!-- PHOTO -->
+
+                    <div class="feature">
+
+                        <div class="icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <rect
+                                    x="3"
+                                    y="4"
+                                    width="18"
+                                    height="16"
+                                    rx="2"
+                                ></rect>
+
+                                <circle
+                                    cx="8.5"
+                                    cy="9"
+                                    r="1.5"
+                                ></circle>
+
+                                <path
+                                    d="m21 15-5-5L5 20"
+                                ></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+                            Photo Protection
+                        </h3>
+
+                        <p>
+                            Keep your private images encrypted
+                            and away from unauthorized access.
+                        </p>
+
+                    </div>
+
+
+                </section>
 
             </div>
 
         </main>
 
+
+        <!-- FOOTER -->
+
         <footer>
-            © 2026 Veyra. All rights reserved.
+
+            © 2026 Veyra. Built for privacy.
+
         </footer>
 
     </div>
